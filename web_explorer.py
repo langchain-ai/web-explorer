@@ -35,9 +35,9 @@ st.info("`I am an AI that can answer questions by exploring, reading, and summar
 
 # Set keys (use for deployed Streamlit app)
 # For personal use, these can be hard-coded or set
-os.environ["GOOGLE_CSE_ID"] == st.secrets["GOOGLE_CSE_ID"]
-os.environ["GOOGLE_API_KEY"] == st.secrets["GOOGLE_API_KEY"]
-os.environ["OPENAI_API_KEY"] == st.secrets["OPENAI_API_KEY"]
+os.environ["GOOGLE_CSE_ID"] = st.secrets["GOOGLE_CSE_ID"]
+os.environ["GOOGLE_API_KEY"] = st.secrets["GOOGLE_API_KEY"]
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
 # Make retriever and llm
 web_retriever, llm = settings()
