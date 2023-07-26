@@ -7,9 +7,14 @@ from langchain.retrievers.web_research import WebResearchRetriever
 def settings():
 
     # Vectorstore
-    from langchain.vectorstores import Chroma
+    import faiss
+    from langchain.vectorstores import FAISS 
     from langchain.embeddings.openai import OpenAIEmbeddings
-    vectorstore_public = Chroma(embedding_function=OpenAIEmbeddings())
+    from langchain.docstore import InMemoryDocstore  
+    embeddings_model = OpenAIEmbeddings()  
+    embedding_size = 1536  
+    index = faiss.IndexFlatL2(embedding_size)  
+    vectorstore_public = FAISS(embeddings_model.embed_query, index, InMemoryDocstore({}), {})
 
     # LLM
     from langchain.chat_models import ChatOpenAI
