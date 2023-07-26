@@ -12,9 +12,11 @@ In `settings()` function, supply:
 
 Set all API keys, e.g.:
 
+```
 export GOOGLE_API_KEY=xxx
 export GOOGLE_CSE_ID=xxx
 export OPENAI_API_KEY=xxx
+```
 
 Run:
 
