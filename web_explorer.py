@@ -81,7 +81,9 @@ if question:
     
     # Write answer and sources
     retrieval_streamer_cb = PrintRetrievalHandler(st.container())
-    stream_handler = StreamHandler(st.empty(), initial_text="`Answer:`\n\n")
+    answer = st.empty()
+    stream_handler = StreamHandler(answer, initial_text="`Answer:`\n\n")
     result = qa_chain({"question": question},callbacks=[retrieval_streamer_cb, stream_handler])
+    answer.info('`Answer:`\n\n' + result['answer'])
     st.info('`Sources:`\n\n' + result['sources'])
         
