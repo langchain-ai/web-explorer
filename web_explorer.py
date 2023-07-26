@@ -1,11 +1,10 @@
-import os
 import streamlit as st
 from langchain.callbacks.base import BaseCallbackHandler
 from langchain.chains import RetrievalQAWithSourcesChain
 from langchain.retrievers.web_research import WebResearchRetriever
 
 @st.cache_resource
-def settings(_stream_handler):
+def settings():
 
     # Vectorstore
     import faiss
@@ -19,7 +18,7 @@ def settings(_stream_handler):
 
     # LLM
     from langchain.chat_models import ChatOpenAI
-    llm = ChatOpenAI(temperature=0, streaming=True, callbacks=[stream_handler])
+    llm = ChatOpenAI(temperature=0, streaming=True)
 
     # Search
     from langchain.utilities import GoogleSearchAPIWrapper
@@ -42,9 +41,8 @@ class StreamHandler(BaseCallbackHandler):
 
     def on_llm_new_token(self, token: str, **kwargs) -> None:
         self.text += token
-        self.container.markdown(self.text)
+        self.container.info(self.text)
 
-stream_handler = StreamHandler(st.empty())
 
 class PrintRetrievalHandler(BaseCallbackHandler):
     def __init__(self, container):
@@ -56,9 +54,9 @@ class PrintRetrievalHandler(BaseCallbackHandler):
     def on_retriever_end(self, documents, **kwargs):
         # self.container.write(documents)
         for idx, doc in enumerate(documents):
-            source = os.path.basename(doc.metadata["source"])
-            self.container.write(f"**Document {idx} from {source}**")
-            self.container.markdown(doc.page_content)
+            source = doc.metadata["source"]
+            self.container.write(f"**Results from {source}**")
+            self.container.text(doc.page_content)
 
 
 st.sidebar.image("img/ai.png")
@@ -66,14 +64,8 @@ st.header("`Interweb Explorer`")
 st.info("`I am an AI that can answer questions by exploring, reading, and summarizing web pages."
     "I can be configured to use different moddes: public API or private (no data sharing).`")
 
-# Set keys (use for deployed Streamlit app)
-# For personal use, these can be hard-coded or set
-os.environ["GOOGLE_CSE_ID"] = st.secrets["GOOGLE_CSE_ID"]
-os.environ["GOOGLE_API_KEY"] = st.secrets["GOOGLE_API_KEY"]
-os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
-
 # Make retriever and llm
-web_retriever, llm = settings(stream_handler)
+web_retriever, llm = settings()
 
 # User input 
 question = st.text_input("`Ask a question:`")
@@ -89,9 +81,7 @@ if question:
     
     # Write answer and sources
     retrieval_streamer_cb = PrintRetrievalHandler(st.container())
+    stream_handler = StreamHandler(st.empty(), initial_text="`Answer:`\n\n")
     result = qa_chain({"question": question},callbacks=[retrieval_streamer_cb, stream_handler])
-    st.info('`Answer:`')
-    st.info(result['answer'])
-    st.info('`Source:`')
-    st.info(result['sources'])
+    st.info('`Sources:`\n\n' + result['sources'])
         
