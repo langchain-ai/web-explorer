@@ -10,7 +10,7 @@ In `settings()` function, supply:
 * Vectorstore: Select the vectorstore and embeddings you want to use (e.g., Chroma, OpenAIEmbeddings).
 * Select the LLM you want to use (e.g., ChatOpenAI).
 
-To use `st.secrets` set enviorment variable in `secrets.toml` file.
+To use `st.secrets` set enviorment variables in `.streamlit/secrets.toml` file.
  
 Or, simply set all API keys and remove `st.secrets`: 
 ```
