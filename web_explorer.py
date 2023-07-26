@@ -17,8 +17,6 @@ def settings():
 
     # Search
     from langchain.utilities import GoogleSearchAPIWrapper
-    os.environ["GOOGLE_CSE_ID"] = "xxx"
-    os.environ["GOOGLE_API_KEY"] = "xxx"
     search = GoogleSearchAPIWrapper()   
 
     # Initialize 

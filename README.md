@@ -6,11 +6,15 @@ You only need to supply a few things.
 
 In `settings()` function, supply:
 
-* Search: Select the search tool you want to use (e.g., GoogleSearchAPIWrapper).
+* Search: Select the search tool you want to use (e.g., GoogleSearchAPIWrapper). 
 * Vectorstore: Select the vectorstore and embeddings you want to use (e.g., Chroma, OpenAIEmbeddings).
 * Select the LLM you want to use (e.g., ChatOpenAI).
 
-Ensure that the API keys required for your tools of interest are specified.
+Set all API keys, e.g.:
+
+export GOOGLE_API_KEY=xxx
+export GOOGLE_CSE_ID=xxx
+export OPENAI_API_KEY=xxx
 
 Run:
 

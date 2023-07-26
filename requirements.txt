@@ -1,0 +1,10 @@
+streamlit==1.25.0
+langchain==0.0.243
+chromadb==0.4.2
+openai==0.27.8
+google-api-core==2.11.1
+google-api-python-client==2.70.0
+google-auth==2.20.0
+google-auth-httplib2==0.1.0
+google-search-results==2.4.2
+googleapis-common-protos==1.59.1
