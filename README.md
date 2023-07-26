@@ -10,13 +10,14 @@ In `settings()` function, supply:
 * Vectorstore: Select the vectorstore and embeddings you want to use (e.g., Chroma, OpenAIEmbeddings).
 * Select the LLM you want to use (e.g., ChatOpenAI).
 
-To use:
-`st.secrets` set enviorment variable in `secrets.toml` file.
+To use `st.secrets` set enviorment variable in `secrets.toml` file.
  
 Or, simply set all API keys and remove `st.secrets`: 
+```
 export GOOGLE_API_KEY=xxx
 export GOOGLE_CSE_ID=xxx
 export OPENAI_API_KEY=xxx
+```
 
 Run:
 ```
