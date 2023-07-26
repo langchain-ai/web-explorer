@@ -19,4 +19,4 @@ streamlit run web_explorer.py
 ```
 
 Example output:
-![example](https://github.com/langchain-ai/web-explorer/assets/122662504/b2c9d671-1188-4451-b73f-37f9a321b822)
+![example](https://github.com/langchain-ai/web-explorer/assets/122662504/f1383640-d089-492d-8757-ad743d34535f)
