@@ -3,6 +3,8 @@ from langchain.callbacks.base import BaseCallbackHandler
 from langchain.chains import RetrievalQAWithSourcesChain
 from langchain.retrievers.web_research import WebResearchRetriever
 
+st.set_page_config(page_title="Interweb Explorer", page_icon="🌐")
+
 def settings():
 
     # Vectorstore
@@ -61,7 +63,7 @@ class PrintRetrievalHandler(BaseCallbackHandler):
 st.sidebar.image("img/ai.png")
 st.header("`Interweb Explorer`")
 st.info("`I am an AI that can answer questions by exploring, reading, and summarizing web pages."
-    "I can be configured to use different moddes: public API or private (no data sharing).`")
+    "I can be configured to use different modes: public API or private (no data sharing).`")
 
 # Make retriever and llm
 if 'retriever' not in st.session_state:
