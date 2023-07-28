@@ -1,7 +1,8 @@
-## Web Explorer
+# Web Explorer
 
 This is a lightweight app using the [Web Research Retriever](https://github.com/langchain-ai/langchain/pull/8102).
 
+## Setup
 You only need to supply a few things.
 
 In `settings()` function, supply:
@@ -12,14 +13,21 @@ In `settings()` function, supply:
 
 To use `st.secrets` set enviorment variables in `.streamlit/secrets.toml` file.
  
-Or, simply set all API keys and remove `st.secrets`: 
+Or, simply add environemnt variables and remove `st.secrets`: 
 ```
-export GOOGLE_API_KEY=xxx
-export GOOGLE_CSE_ID=xxx
-export OPENAI_API_KEY=xxx
+import os
+os.environ["GOOGLE_API_KEY"] = "YOUR_API_KEY"
+os.environ["GOOGLE_CSE_ID"] = "YOUR_CSE_ID" 
+os.environ["OPENAI_API_BASE"] = "https://api.openai.com/v1"
+os.environ["OPENAI_API_KEY"] = "YOUR_API_KEY"
+
 ```
 
-Run:
+For `GOOGLE_API_KEY` , you could get it from [this link](https://console.cloud.google.com/apis/api/customsearch.googleapis.com/credentials).
+
+For `GOOGLE_CSE_ID` , you could get it from [this link](https://programmablesearchengine.google.com/)
+
+## Run
 ```
 streamlit run web_explorer.py
 ```
